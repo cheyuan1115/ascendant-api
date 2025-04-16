@@ -1,0 +1,5 @@
+
+{
+  "builds": [{ "src": "api/ascendant.py", "use": "@vercel/python" }],
+  "routes": [{ "src": "/api/ascendant", "dest": "api/ascendant.py" }]
+}
