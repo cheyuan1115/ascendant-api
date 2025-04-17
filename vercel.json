@@ -3,3 +3,13 @@
   "builds": [{ "src": "api/ascendant.py", "use": "@vercel/python" }],
   "routes": [{ "src": "/api/ascendant", "dest": "api/ascendant.py" }]
 }
+{
+  "functions": {
+    "api/*.py": {
+      "runtime": "python3.9"
+    }
+  },
+  "includeFiles": [
+    "api/sepl_18.se1"
+  ]
+}
