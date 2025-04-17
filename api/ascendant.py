@@ -55,7 +55,8 @@ def full_astrology():
 
         # 凱龍星與宮位
         
-        chiron_deg = swe.calc_ut(jd, CHIRON_ID)[0][0]
+# 凱龍星與宮位
+        chiron_deg = swe.calc_ut(jd, swe.CHIRON)[0][0]
         chiron_sign = ZODIAC_SIGNS[int(chiron_deg // 30) % 12]
 
         houses, _ = swe.houses(jd, lat, lon)
