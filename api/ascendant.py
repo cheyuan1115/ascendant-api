@@ -50,17 +50,17 @@ def full_astrology():
             "土星": swe.SATURN, "天王星": swe.URANUS, "海王星": swe.NEPTUNE, "冥王星": swe.PLUTO
         }
 
-        chart_ruler_deg = swe.calc_ut(jd, planet_ids[chart_ruler_planet])[0]
+        chart_ruler_deg = swe.calc_ut(jd, planet_ids[chart_ruler_planet])[0][0]
         chart_ruler_sign = ZODIAC_SIGNS[int(chart_ruler_deg // 30) % 12]
 
-        sun_deg = swe.calc_ut(jd, swe.SUN)[0]
+        sun_deg = swe.calc_ut(jd, swe.SUN)[0][0]
         sun_sign = ZODIAC_SIGNS[int(sun_deg // 30) % 12]
 
-        moon_deg = swe.calc_ut(jd, swe.MOON)[0]
+        moon_deg = swe.calc_ut(jd, swe.MOON)[0][0]
         moon_sign = ZODIAC_SIGNS[int(moon_deg // 30) % 12]
 
         CHIRON_ID = 2060
-        chiron_deg = swe.calc_ut(jd, CHIRON_ID)[0]
+        chiron_deg = swe.calc_ut(jd, CHIRON_ID)[0][0]
         chiron_sign = ZODIAC_SIGNS[int(chiron_deg // 30) % 12]
 
         houses, _ = swe.houses(jd, lat, lon)
