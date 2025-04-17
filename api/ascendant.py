@@ -31,7 +31,7 @@ def ascendant():
         asc = swe.houses(jd, lat, lon)[0][0]  # 返回第一宮起始度數
 
         sign = int(asc // 30) % 12
-        return jsonify({ "ascendant": ZODIAC_SIGNS[sign] })
+response = jsonify({ "ascendant": ZODIAC_SIGNS[sign] })
+response.headers.add('Access-Control-Allow-Origin', '*')
+return response
 
-    except Exception as e:
-        return jsonify({ "error": str(e) }), 500
