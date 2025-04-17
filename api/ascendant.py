@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import swisseph as swe
 import datetime
+import os
 
 app = Flask(__name__)
 
@@ -28,9 +29,9 @@ def full_astrology():
         dt = datetime.datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M")
         jd = swe.julday(dt.year, dt.month, dt.day, dt.hour + dt.minute / 60.0)
 
-        # 星曆檔目錄（使用預設目前目錄）
-        swe.set_ephe_path("./")
-
+        # 設定星曆資料目錄（與 sepl_18.se1 放在同一層）
+        ephe_path = os.path.abspath(os.path.dirname(__file__))
+        swe.set_ephe_path(ephe_path)
 
         # 上升星座
         asc = swe.houses(jd, lat, lon)[0][0]
@@ -54,8 +55,8 @@ def full_astrology():
         moon_deg = swe.calc_ut(jd, swe.MOON)[0][0]
         moon_sign = ZODIAC_SIGNS[int(moon_deg // 30) % 12]
 
-        # 凱龍星與宮位
-        chiron_deg = swe.calc_ut(jd, 15)[0][0]  # 使用 CHIRON 的編號 15
+        # 凱龍星與宮位（ID 15）
+        chiron_deg = swe.calc_ut(jd, 15)[0][0]
         chiron_sign = ZODIAC_SIGNS[int(chiron_deg // 30) % 12]
 
         houses, _ = swe.houses(jd, lat, lon)
@@ -67,7 +68,7 @@ def full_astrology():
                 if start <= chiron_deg < end:
                     chiron_house = i + 1
                     break
-            else:  # 跨越0度（例如第12宮）
+            else:
                 if chiron_deg >= start or chiron_deg < end:
                     chiron_house = i + 1
                     break
