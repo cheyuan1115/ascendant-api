@@ -29,7 +29,7 @@ def full_astrology():
         jd = swe.julday(dt.year, dt.month, dt.day, dt.hour + dt.minute / 60.0)
 
         # 星曆檔目錄（使用預設目前目錄）
-        swe.set_ephe_path("./sepl_18.se1")
+        swe.set_ephe_path(".")
 
         # 上升星座
         asc = swe.houses(jd, lat, lon)[0][0]
@@ -54,9 +54,7 @@ def full_astrology():
         moon_sign = ZODIAC_SIGNS[int(moon_deg // 30) % 12]
 
         # 凱龍星與宮位
-        
-# 凱龍星與宮位
-        chiron_deg = swe.calc_ut(jd, swe.CHIRON)[0][0]
+        chiron_deg = swe.calc_ut(jd, 15)[0][0]  # 使用 CHIRON 的編號 15
         chiron_sign = ZODIAC_SIGNS[int(chiron_deg // 30) % 12]
 
         houses, _ = swe.houses(jd, lat, lon)
