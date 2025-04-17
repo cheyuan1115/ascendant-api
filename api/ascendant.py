@@ -89,7 +89,7 @@ def full_astrology():
         })
         response.headers.add("Access-Control-Allow-Origin", "*")
         return response
-
+# trigger redeploy
     except Exception as e:
         error_response = jsonify({"error": str(e)})
         error_response.headers.add("Access-Control-Allow-Origin", "*")
