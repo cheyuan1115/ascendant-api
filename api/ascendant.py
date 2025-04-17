@@ -54,7 +54,7 @@ def full_astrology():
         moon_sign = ZODIAC_SIGNS[int(moon_deg // 30) % 12]
 
         # 凱龍星與宮位
-        CHIRON_ID = 2060
+        
         chiron_deg = swe.calc_ut(jd, CHIRON_ID)[0][0]
         chiron_sign = ZODIAC_SIGNS[int(chiron_deg // 30) % 12]
 
