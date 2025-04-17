@@ -29,7 +29,8 @@ def full_astrology():
         jd = swe.julday(dt.year, dt.month, dt.day, dt.hour + dt.minute / 60.0)
 
         # 星曆檔目錄（使用預設目前目錄）
-        swe.set_ephe_path(".")
+        swe.set_ephe_path("./")
+
 
         # 上升星座
         asc = swe.houses(jd, lat, lon)[0][0]
